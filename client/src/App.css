@@ -1,0 +1,27 @@
+.nav-tabs {
+	margin-top: 20px;
+}
+h1 {
+	text-align: center;
+	margin-top: 20px !important;
+}
+form {
+	margin: auto;
+	max-width: 1200px;
+	text-align: center;
+	margin-top: 20px;
+}
+#eventsTab, #ticketsTab {
+	margin: auto;
+	max-width: 1200px;
+	text-align: center;
+}
+.noEvents, .noTickets {
+	font-weight: bold;
+	text-align: center;
+	margin-top: 20px;
+}
+.error {
+	color: #ff0000 !important;
+	float: left;
+}
