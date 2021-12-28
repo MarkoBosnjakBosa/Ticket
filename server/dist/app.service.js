@@ -9,25 +9,6 @@ Object.defineProperty(exports, "__esModule", { value: true });
 exports.AppService = void 0;
 const common_1 = require("@nestjs/common");
 let AppService = class AppService {
-    constructor() {
-        this.events = [];
-        this.tickets = [];
-    }
-    getEvents() {
-        return this.events;
-    }
-    createEvent(event) {
-        this.events.push(event);
-    }
-    getTickets() {
-        return this.tickets;
-    }
-    bookTicket(ticket) {
-        this.tickets.push(ticket);
-    }
-    cancelTicket(barcode) {
-        this.tickets = this.tickets.filter(ticket => ticket.barcode !== barcode);
-    }
 };
 AppService = __decorate([
     (0, common_1.Injectable)()

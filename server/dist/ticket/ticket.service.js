@@ -6,20 +6,24 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
     return c > 3 && r && Object.defineProperty(target, key, r), r;
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.AppModule = void 0;
+exports.TicketService = void 0;
 const common_1 = require("@nestjs/common");
-const app_controller_1 = require("./app.controller");
-const app_service_1 = require("./app.service");
-const ticket_module_1 = require("./ticket/ticket.module");
-const event_module_1 = require("./event/event.module");
-let AppModule = class AppModule {
+let TicketService = class TicketService {
+    constructor() {
+        this.tickets = [];
+    }
+    getTickets() {
+        return this.tickets;
+    }
+    bookTicket(ticket) {
+        this.tickets.push(ticket);
+    }
+    cancelTicket(barcode) {
+        this.tickets = this.tickets.filter(ticket => ticket.barcode !== barcode);
+    }
 };
-AppModule = __decorate([
-    (0, common_1.Module)({
-        imports: [ticket_module_1.TicketModule, event_module_1.EventModule],
-        controllers: [app_controller_1.AppController],
-        providers: [app_service_1.AppService],
-    })
-], AppModule);
-exports.AppModule = AppModule;
-//# sourceMappingURL=app.module.js.map
+TicketService = __decorate([
+    (0, common_1.Injectable)()
+], TicketService);
+exports.TicketService = TicketService;
+//# sourceMappingURL=ticket.service.js.map

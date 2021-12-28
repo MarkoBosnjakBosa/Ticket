@@ -23,7 +23,7 @@ function App() {
 		let isValid = validateEventForm();
 		if(isValid) {
 			let options = {method: "POST", headers: new Headers({"Content-Type": "application/json", "Accept": "application/json"}), body: JSON.stringify(event)};
-			fetch(process.env.REACT_APP_SERVER_BASE_URL + "/events/create", options)
+			fetch(process.env.REACT_APP_SERVER_BASE_URL + "/event/create", options)
 			.then(response => response.json())
 			.then(response => {
 				setEvents(values => [...values, response.event]);
@@ -65,7 +65,7 @@ function App() {
 		let isValid = validateTicketForm();
 		if(isValid) {
 			let options = {method: "POST", headers: new Headers({"Content-Type": "application/json", "Accept": "application/json"}), body: JSON.stringify(ticket)};
-			fetch(process.env.REACT_APP_SERVER_BASE_URL + "/tickets/book", options)
+			fetch(process.env.REACT_APP_SERVER_BASE_URL + "/ticket/book", options)
 			.then(response => response.json())
 			.then(response => {
 				setTickets(values => [...values, response.ticket]);
@@ -93,10 +93,10 @@ function App() {
 	}
 
 	const cancelTicket = barcode => {
-		let confirmed = window.confirm("Delete ticket " + barcode + "?");
+		let confirmed = window.confirm("Cancel ticket " + barcode + "?");
 		if(confirmed) {
 			let options = {method: "DELETE"};
-			fetch(process.env.REACT_APP_SERVER_BASE_URL + "/tickets/cancel/" + barcode, options).then(response => {
+			fetch(process.env.REACT_APP_SERVER_BASE_URL + "/ticket/cancel/" + barcode, options).then(response => {
 				setTickets(tickets.filter(ticket => ticket.barcode !== barcode));
 			}).catch(error => {
 				console.log("Error: ", error);
@@ -124,10 +124,10 @@ function App() {
 
 	useEffect(() => {
 		let options = {method: "GET"};
-		fetch(process.env.REACT_APP_SERVER_BASE_URL + "/events/get", options)
+		fetch(process.env.REACT_APP_SERVER_BASE_URL + "/event/get", options)
 			.then(response => response.json())
 			.then(events => setEvents(events));
-		fetch(process.env.REACT_APP_SERVER_BASE_URL + "/tickets/get", options)
+		fetch(process.env.REACT_APP_SERVER_BASE_URL + "/ticket/get", options)
 			.then(response => response.json())
 			.then(tickets => setTickets(tickets));
 	}, []);
