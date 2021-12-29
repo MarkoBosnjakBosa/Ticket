@@ -3,7 +3,12 @@ import { TicketDTO } from '../dto/ticket.dto';
 export declare class TicketController {
     private readonly ticketService;
     constructor(ticketService: TicketService);
-    getTickets(response: any): Promise<any>;
-    bookTickets(response: any, TicketDTO: TicketDTO): Promise<any>;
-    cancelTicket(response: any, barcode: any): Promise<any>;
+    getTickets(): Promise<import("../interfaces/ticket.interface").Ticket[]>;
+    bookTicket(TicketDTO: TicketDTO): Promise<{
+        message: string;
+        ticket: import("../interfaces/ticket.interface").Ticket;
+    }>;
+    cancelTicket(barcode: any): Promise<{
+        message: string;
+    }>;
 }

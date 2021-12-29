@@ -31,7 +31,7 @@ describe("e2e tests for event and ticket endpoints", () => {
             .post("/event/create")
             .set("Accept", "application/json")
             .send(event)
-            .expect(HttpStatus.OK);
+            .expect(HttpStatus.CREATED);
     });
 
 	it("getEvents", () => {
@@ -51,7 +51,7 @@ describe("e2e tests for event and ticket endpoints", () => {
             .post("/ticket/book")
             .set("Accept", "application/json")
             .send(ticket)
-            .expect(HttpStatus.OK);
+            .expect(HttpStatus.CREATED);
     });
 
 	it("getTickets", () => {

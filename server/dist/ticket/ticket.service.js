@@ -8,6 +8,7 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.TicketService = void 0;
 const common_1 = require("@nestjs/common");
+const uuid_1 = require("uuid");
 let TicketService = class TicketService {
     constructor() {
         this.tickets = [];
@@ -16,7 +17,9 @@ let TicketService = class TicketService {
         return this.tickets;
     }
     bookTicket(ticket) {
+        ticket.barcode = (0, uuid_1.v4)();
         this.tickets.push(ticket);
+        return ticket;
     }
     cancelTicket(barcode) {
         this.tickets = this.tickets.filter(ticket => ticket.barcode !== barcode);

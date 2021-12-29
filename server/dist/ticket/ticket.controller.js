@@ -16,55 +16,52 @@ exports.TicketController = void 0;
 const common_1 = require("@nestjs/common");
 const ticket_service_1 = require("./ticket.service");
 const ticket_dto_1 = require("../dto/ticket.dto");
-const uuid_1 = require("uuid");
 let TicketController = class TicketController {
     constructor(ticketService) {
         this.ticketService = ticketService;
     }
-    async getTickets(response) {
-        return response.status(common_1.HttpStatus.OK).json(this.ticketService.getTickets());
+    async getTickets() {
+        return this.ticketService.getTickets();
     }
-    async bookTickets(response, TicketDTO) {
-        let barcode = (0, uuid_1.v4)();
-        let ticket = { barcode: barcode, event: TicketDTO.event, name: TicketDTO.name };
-        this.ticketService.bookTicket(ticket);
-        return response.status(common_1.HttpStatus.OK).json({
-            message: 'Ticket has been successfully booked!',
+    async bookTicket(TicketDTO) {
+        let ticket = this.ticketService.bookTicket(TicketDTO);
+        return {
+            message: "Ticket has been successfully booked!",
             ticket: ticket
-        });
+        };
     }
-    async cancelTicket(response, barcode) {
+    async cancelTicket(barcode) {
         this.ticketService.cancelTicket(barcode);
-        return response.status(common_1.HttpStatus.OK).json({
-            message: 'Ticket has been successfully canceled!'
-        });
+        return {
+            message: "Ticket has been successfully canceled!"
+        };
     }
 };
 __decorate([
-    (0, common_1.Get)('/get'),
-    __param(0, (0, common_1.Res)()),
+    (0, common_1.Get)("/get"),
+    (0, common_1.HttpCode)(common_1.HttpStatus.OK),
     __metadata("design:type", Function),
-    __metadata("design:paramtypes", [Object]),
+    __metadata("design:paramtypes", []),
     __metadata("design:returntype", Promise)
 ], TicketController.prototype, "getTickets", null);
 __decorate([
-    (0, common_1.Post)('/book'),
-    __param(0, (0, common_1.Res)()),
-    __param(1, (0, common_1.Body)()),
+    (0, common_1.Post)("/book"),
+    (0, common_1.HttpCode)(common_1.HttpStatus.CREATED),
+    __param(0, (0, common_1.Body)()),
     __metadata("design:type", Function),
-    __metadata("design:paramtypes", [Object, ticket_dto_1.TicketDTO]),
+    __metadata("design:paramtypes", [ticket_dto_1.TicketDTO]),
     __metadata("design:returntype", Promise)
-], TicketController.prototype, "bookTickets", null);
+], TicketController.prototype, "bookTicket", null);
 __decorate([
-    (0, common_1.Delete)('/cancel/:barcode'),
-    __param(0, (0, common_1.Res)()),
-    __param(1, (0, common_1.Param)('barcode')),
+    (0, common_1.Delete)("/cancel/:barcode"),
+    (0, common_1.HttpCode)(common_1.HttpStatus.OK),
+    __param(0, (0, common_1.Param)("barcode")),
     __metadata("design:type", Function),
-    __metadata("design:paramtypes", [Object, Object]),
+    __metadata("design:paramtypes", [Object]),
     __metadata("design:returntype", Promise)
 ], TicketController.prototype, "cancelTicket", null);
 TicketController = __decorate([
-    (0, common_1.Controller)('ticket'),
+    (0, common_1.Controller)("ticket"),
     __metadata("design:paramtypes", [ticket_service_1.TicketService])
 ], TicketController);
 exports.TicketController = TicketController;

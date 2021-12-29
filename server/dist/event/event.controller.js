@@ -20,34 +20,34 @@ let EventController = class EventController {
     constructor(eventService) {
         this.eventService = eventService;
     }
-    async getEvents(response) {
-        return response.status(common_1.HttpStatus.OK).json(this.eventService.getEvents());
+    async getEvents() {
+        return this.eventService.getEvents();
     }
-    async createEvent(response, EventDTO) {
+    async createEvent(EventDTO) {
         this.eventService.createEvent(EventDTO);
-        return response.status(common_1.HttpStatus.OK).json({
+        return {
             message: 'Event has been successfully created!',
             event: EventDTO,
-        });
+        };
     }
 };
 __decorate([
-    (0, common_1.Get)('/get'),
-    __param(0, (0, common_1.Res)()),
+    (0, common_1.Get)("/get"),
+    (0, common_1.HttpCode)(common_1.HttpStatus.OK),
     __metadata("design:type", Function),
-    __metadata("design:paramtypes", [Object]),
+    __metadata("design:paramtypes", []),
     __metadata("design:returntype", Promise)
 ], EventController.prototype, "getEvents", null);
 __decorate([
-    (0, common_1.Post)('/create'),
-    __param(0, (0, common_1.Res)()),
-    __param(1, (0, common_1.Body)()),
+    (0, common_1.Post)("/create"),
+    (0, common_1.HttpCode)(common_1.HttpStatus.CREATED),
+    __param(0, (0, common_1.Body)()),
     __metadata("design:type", Function),
-    __metadata("design:paramtypes", [Object, event_dto_1.EventDTO]),
+    __metadata("design:paramtypes", [event_dto_1.EventDTO]),
     __metadata("design:returntype", Promise)
 ], EventController.prototype, "createEvent", null);
 EventController = __decorate([
-    (0, common_1.Controller)('event'),
+    (0, common_1.Controller)("event"),
     __metadata("design:paramtypes", [event_service_1.EventService])
 ], EventController);
 exports.EventController = EventController;
