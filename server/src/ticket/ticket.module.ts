@@ -3,7 +3,7 @@ import { TicketService } from './ticket.service';
 import { TicketController } from './ticket.controller';
 
 @Module({
-  providers: [TicketService],
-  controllers: [TicketController]
+	providers: [TicketService],
+	controllers: [TicketController]
 })
 export class TicketModule {}

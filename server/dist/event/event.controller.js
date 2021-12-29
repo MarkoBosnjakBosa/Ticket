@@ -26,7 +26,7 @@ let EventController = class EventController {
     async createEvent(EventDTO) {
         this.eventService.createEvent(EventDTO);
         return {
-            message: 'Event has been successfully created!',
+            message: "Event has been successfully created!",
             event: EventDTO,
         };
     }

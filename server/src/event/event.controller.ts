@@ -18,7 +18,7 @@ export class EventController {
 	async createEvent(@Body() EventDTO: EventDTO) {
 		this.eventService.createEvent(EventDTO);
 		return {
-			message: 'Event has been successfully created!',
+			message: "Event has been successfully created!",
 			event: EventDTO,
 		}
 	}

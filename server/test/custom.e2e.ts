@@ -8,7 +8,7 @@ import { TicketDTO } from 'src/dto/ticket.dto';
 describe("e2e tests for event and ticket endpoints", () => {
 	let app: INestApplication;
 
-	beforeEach(async () => {
+	beforeAll(async () => {
         const moduleFixture: TestingModule = await Test.createTestingModule({
             imports: [AppModule],
         }).compile();
