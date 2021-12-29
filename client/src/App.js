@@ -4,6 +4,7 @@ import 'bootstrap';
 import 'bootstrap/dist/css/bootstrap.min.css';
 
 function App() {
+	//Base Server Url: http://localhost:5000
 	const [event, setEvent] = useState({name: "", date: "", address: ""});
 	const [eventErrors, setEventErrors] = useState({});
 	const [events, setEvents] = useState([]);
