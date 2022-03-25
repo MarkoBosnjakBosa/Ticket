@@ -1,1 +1,1 @@
-Ticket (Node.js, React)
+Ticket application (Node.js, React)
